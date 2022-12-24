@@ -1,0 +1,36 @@
+{
+  "posts": [
+    {
+      "title": "박현우",
+      "content": "화이팅!",
+      "id": 1
+    },
+    {
+      "title": "이거 ",
+      "content": "되냐?",
+      "id": 2
+    },
+    {
+      "title": "이동!",
+      "content": "이동!!!!",
+      "id": 3
+    },
+    {
+      "title": "christmas-eve",
+      "content": "fucking Good",
+      "createdAt": 1671871098027,
+      "id": 4
+    },
+    {
+      "title": "christmas-eve",
+      "content": "fucking Good sexy gold ddf sfsf",
+      "id": 5
+    },
+    {
+      "title": "redus",
+      "content": "reusd",
+      "createdAt": 1671872151610,
+      "id": 6
+    }
+  ]
+}
