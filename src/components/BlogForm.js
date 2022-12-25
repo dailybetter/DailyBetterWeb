@@ -5,15 +5,25 @@ import { useHistory, useParams } from 'react-router-dom';
 
 const BlogForm = ({ editing }) => {
   const { id } = useParams();
+  const [prevTitle, setPrevTitle] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [prevContent, setPrevContent] = useState('');
   const history = useHistory();
   useEffect(() => {
-    axios.get(`http://localhost:3003/posts/${id}`).then((res) => {
-      setTitle(res.data.title);
-      setContent(res.data.content);
-    });
-  }, [id]);
+    if (editing) {
+      axios.get(`http://localhost:3003/posts/${id}`).then((res) => {
+        setTitle(res.data.title);
+        setPrevTitle(res.data.title);
+        setContent(res.data.content);
+        setPrevContent(res.data.content);
+      });
+    }
+  }, [id, editing]);
+
+  const isEdited = () => {
+    return title !== prevTitle || content !== prevContent;
+  };
   const onSubmit = () => {
     if (title === '' || content === '') {
       window.alert('제목과 내용을 입력하세요');
@@ -24,7 +34,9 @@ const BlogForm = ({ editing }) => {
             title,
             content,
           })
-          .then(history.push('/blogs'));
+          .then((res) => {
+            history.push(`/blogs/${id}`);
+          });
       } else {
         axios
           .post('http://localhost:3003/posts', {
@@ -64,7 +76,11 @@ const BlogForm = ({ editing }) => {
           }}
         />
       </div>
-      <button className='btn btn-primary' onClick={onSubmit}>
+      <button
+        className='btn btn-primary'
+        onClick={onSubmit}
+        disabled={editing && !isEdited()}
+      >
         {editing ? 'Edit' : 'Create'}
       </button>
     </>
