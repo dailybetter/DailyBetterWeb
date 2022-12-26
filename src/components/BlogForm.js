@@ -9,6 +9,9 @@ const BlogForm = ({ editing }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [prevContent, setPrevContent] = useState('');
+  const [publish, setPublish] = useState(false);
+  const [prevPublish, setPrevPublish] = useState(false);
+
   const history = useHistory();
   useEffect(() => {
     if (editing) {
@@ -17,13 +20,23 @@ const BlogForm = ({ editing }) => {
         setPrevTitle(res.data.title);
         setContent(res.data.content);
         setPrevContent(res.data.content);
+        setPublish(res.data.publish);
+        setPrevPublish(res.data.publish);
       });
     }
   }, [id, editing]);
-
-  const isEdited = () => {
-    return title !== prevTitle || content !== prevContent;
+  const Cancel = () => {
+    editing ? history.push(`/blogs/${id}`) : history.push('/blogs');
   };
+  const onChangePublish = (e) => {
+    setPublish(e.target.checked);
+  };
+  const isEdited = () => {
+    return (
+      title !== prevTitle || content !== prevContent || prevPublish !== publish
+    );
+  };
+
   const onSubmit = () => {
     if (title === '' || content === '') {
       window.alert('제목과 내용을 입력하세요');
@@ -33,6 +46,7 @@ const BlogForm = ({ editing }) => {
           .put(`http://localhost:3003/posts/${id}`, {
             title,
             content,
+            publish,
           })
           .then((res) => {
             history.push(`/blogs/${id}`);
@@ -43,6 +57,7 @@ const BlogForm = ({ editing }) => {
             title,
             content,
             createdAt: Date.now(),
+            publish,
           })
           .then(() => {
             history.push('/blogs');
@@ -76,12 +91,24 @@ const BlogForm = ({ editing }) => {
           }}
         />
       </div>
+      <div className='form-check mb-3'>
+        <input
+          className='form-check-input'
+          type='checkbox'
+          checked={publish}
+          onChange={onChangePublish}
+        />
+        <label className='form-check-label'>Publish</label>
+      </div>
       <button
         className='btn btn-primary'
         onClick={onSubmit}
         disabled={editing && !isEdited()}
       >
         {editing ? 'Edit' : 'Create'}
+      </button>
+      <button className='btn btn-danger ms-2' onClick={Cancel}>
+        Cancel
       </button>
     </>
   );
