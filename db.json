@@ -30,8 +30,29 @@
     {
       "title": "redus",
       "content": "reusd",
-      "createdAt": 1671872151610,
+      "publish": false,
       "id": 6
+    },
+    {
+      "title": "퍼블리시",
+      "content": "이거는 퍼블리시야",
+      "createdAt": 1672131471198,
+      "publish": true,
+      "id": 7
+    },
+    {
+      "title": "이것도 퍼블리시",
+      "content": "이것도 퍼블리시임",
+      "createdAt": 1672131503942,
+      "publish": true,
+      "id": 8
+    },
+    {
+      "title": "이건 프리베이트임",
+      "content": "이건 프리베이트",
+      "createdAt": 1672131514182,
+      "publish": false,
+      "id": 9
     }
   ]
 }
