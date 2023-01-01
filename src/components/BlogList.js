@@ -13,7 +13,7 @@ const BlogList = ({ isAdmin }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [numberOfPosts, setNumberOfPosts] = useState(0);
   const [numberOfPages, setNumberOfPages] = useState(0);
-  const limit = 15;
+  const limit = 1;
   useEffect(() => {
     setNumberOfPages(Math.ceil(numberOfPosts / limit));
   }, [numberOfPosts]);
@@ -83,11 +83,13 @@ const BlogList = ({ isAdmin }) => {
   return (
     <>
       {renderPageList()}
-      <Pagination
-        currentPage={currentPage}
-        numberOfPages={numberOfPages}
-        onClick={getPosts}
-      />
+      {numberOfPages > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          numberOfPages={numberOfPages}
+          onClick={getPosts}
+        />
+      )}
     </>
   );
 };
