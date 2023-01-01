@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Card from '../components/Card';
 import { useHistory, useLocation } from 'react-router-dom';
 import Spinner from '../components/Spinner';
@@ -18,7 +18,7 @@ const BlogList = ({ isAdmin }) => {
   const [numberOfPages, setNumberOfPages] = useState(0);
   const limit = 1;
   const onClickPageButton = (page) => {
-    history.push(`/${location.pathname}?page=${page}`);
+    history.push(`${location.pathname}?page=${page}`);
     getPosts(page);
   };
 
@@ -26,32 +26,35 @@ const BlogList = ({ isAdmin }) => {
     setNumberOfPages(Math.ceil(numberOfPosts / limit));
   }, [numberOfPosts]);
 
-  const getPosts = (page = 1) => {
-    setCurrentPage(page);
-    let params = {
-      _page: page,
-      _limit: limit,
-      _sort: 'id',
-      _order: 'desc',
-    };
-    if (!isAdmin) {
-      params = { ...params, publish: true };
-    }
-    axios
-      .get(`http://localhost:3003/posts`, {
-        params,
-      })
-      .then((res) => {
-        setNumberOfPosts(res.headers['x-total-count']);
-        setPosts(res.data);
-        setLoading(false);
-      });
-  };
+  const getPosts = useCallback(
+    (page = 1) => {
+      setCurrentPage(page);
+      let params = {
+        _page: page,
+        _limit: limit,
+        _sort: 'id',
+        _order: 'desc',
+      };
+      if (!isAdmin) {
+        params = { ...params, publish: true };
+      }
+      axios
+        .get(`http://localhost:3003/posts`, {
+          params,
+        })
+        .then((res) => {
+          setNumberOfPosts(res.headers['x-total-count']);
+          setPosts(res.data);
+          setLoading(false);
+        });
+    },
+    [isAdmin]
+  );
 
   useEffect(() => {
     setCurrentPage(parseInt(pageParam) || 1);
-    getPosts(parseInt(pageParam));
-  }, [pageParam]);
+    getPosts(parseInt(pageParam) || 1);
+  }, [pageParam, getPosts]);
 
   const deleteBlog = (e, id) => {
     e.stopPropagation();
@@ -59,12 +62,15 @@ const BlogList = ({ isAdmin }) => {
       setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
     });
   };
+
   if (loading) {
     return <Spinner />;
   }
+
   if (posts.length === 0) {
     return <div>'No posts found'</div>;
   }
+
   const renderPageList = () => {
     return posts.map((post) => {
       return (
