@@ -4,23 +4,37 @@ import Card from '../components/Card';
 import { useHistory } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import { bool } from 'prop-types';
-import Pagination from './Pagenation';
+import Pagination from './Pagination';
 
 const BlogList = ({ isAdmin }) => {
   const history = useHistory();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [numberOfPosts, setNumberOfPosts] = useState(0);
+  const [numberOfPages, setNumberOfPages] = useState(0);
+  const limit = 15;
+  useEffect(() => {
+    setNumberOfPages(Math.ceil(numberOfPosts / limit));
+  }, [numberOfPosts]);
+
   const getPosts = (page = 1) => {
+    setCurrentPage(page);
+    let params = {
+      _page: page,
+      _limit: limit,
+      _sort: 'id',
+      _order: 'desc',
+    };
+    if (!isAdmin) {
+      params = { ...params, publish: true };
+    }
     axios
       .get(`http://localhost:3003/posts`, {
-        params: {
-          _page: page,
-          _limit: 5,
-          _sort: 'id',
-          _order: 'desc',
-        },
+        params,
       })
       .then((res) => {
+        setNumberOfPosts(res.headers['x-total-count']);
         setPosts(res.data);
         setLoading(false);
       });
@@ -42,36 +56,38 @@ const BlogList = ({ isAdmin }) => {
     return <div>'No posts found'</div>;
   }
   const renderPageList = () => {
-    return posts
-      .filter((post) => isAdmin || post.publish)
-      .map((post) => {
-        return (
-          <Card
-            key={post.id}
-            title={post.title}
-            onClick={(e) => {
-              e.stopPropagation(); //이벤트 버블링 방지
-              history.push(`/blogs/${post.id}`);
-            }}
-          >
-            {isAdmin ? (
-              <div>
-                <button
-                  className='btn btn-danger btn-sm'
-                  onClick={(e) => deleteBlog(e, post.id)}
-                >
-                  Delete
-                </button>
-              </div>
-            ) : null}
-          </Card>
-        );
-      });
+    return posts.map((post) => {
+      return (
+        <Card
+          key={post.id}
+          title={post.title}
+          onClick={(e) => {
+            e.stopPropagation(); //이벤트 버블링 방지
+            history.push(`/blogs/${post.id}`);
+          }}
+        >
+          {isAdmin ? (
+            <div>
+              <button
+                className='btn btn-danger btn-sm'
+                onClick={(e) => deleteBlog(e, post.id)}
+              >
+                Delete
+              </button>
+            </div>
+          ) : null}
+        </Card>
+      );
+    });
   };
   return (
     <>
       {renderPageList()}
-      <Pagination />
+      <Pagination
+        currentPage={currentPage}
+        numberOfPages={numberOfPages}
+        onClick={getPosts}
+      />
     </>
   );
 };
