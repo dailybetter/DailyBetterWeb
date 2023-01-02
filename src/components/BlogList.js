@@ -3,9 +3,8 @@ import { useState, useEffect, useCallback } from 'react';
 import Card from '../components/Card';
 import { useHistory, useLocation } from 'react-router-dom';
 import Spinner from '../components/Spinner';
-import { bool } from 'prop-types';
 import Pagination from './Pagination';
-
+import propTypes from 'prop-types';
 const BlogList = ({ isAdmin }) => {
   const history = useHistory();
   const location = useLocation();
@@ -110,7 +109,7 @@ const BlogList = ({ isAdmin }) => {
   );
 };
 BlogList.propTypes = {
-  isAdmin: bool,
+  isAdmin: propTypes.bool,
 };
 BlogList.defaultProps = {
   isAdmin: false,
