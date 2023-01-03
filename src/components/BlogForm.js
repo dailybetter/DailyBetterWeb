@@ -11,6 +11,8 @@ const BlogForm = ({ editing }) => {
   const [prevContent, setPrevContent] = useState('');
   const [publish, setPublish] = useState(false);
   const [prevPublish, setPrevPublish] = useState(false);
+  const [titleError, setTitleError] = useState(false);
+  const [contentError, setContentError] = useState(false);
 
   const history = useHistory();
   useEffect(() => {
@@ -36,32 +38,47 @@ const BlogForm = ({ editing }) => {
       title !== prevTitle || content !== prevContent || prevPublish !== publish
     );
   };
-
+  const validateForm = () => {
+    let validate = true;
+    if (title === '') {
+      setTitleError(true);
+      validate = false;
+    }
+    if (content === '') {
+      setContentError(true);
+      validate = false;
+    }
+    return validate;
+  };
   const onSubmit = () => {
-    if (title === '' || content === '') {
-      window.alert('제목과 내용을 입력하세요');
-    } else {
-      if (editing) {
-        axios
-          .put(`http://localhost:3003/posts/${id}`, {
-            title,
-            content,
-            publish,
-          })
-          .then((res) => {
-            history.push(`/blogs/${id}`);
-          });
+    setTitleError(false);
+    setContentError(false);
+    if (validateForm()) {
+      if (title === '' || content === '') {
+        window.alert('제목과 내용을 입력하세요');
       } else {
-        axios
-          .post('http://localhost:3003/posts', {
-            title,
-            content,
-            createdAt: Date.now(),
-            publish,
-          })
-          .then(() => {
-            history.push('/admin');
-          });
+        if (editing) {
+          axios
+            .put(`http://localhost:3003/posts/${id}`, {
+              title,
+              content,
+              publish,
+            })
+            .then((res) => {
+              history.push(`/blogs/${id}`);
+            });
+        } else {
+          axios
+            .post('http://localhost:3003/posts', {
+              title,
+              content,
+              createdAt: Date.now(),
+              publish,
+            })
+            .then(() => {
+              history.push('/admin');
+            });
+        }
       }
     }
   };
@@ -71,18 +88,19 @@ const BlogForm = ({ editing }) => {
       <div className='mb-1'>
         <label className='form-label'>Title</label>
         <input
-          className='form-control'
+          className={`form-control ${titleError ? 'border-danger' : ''}`}
           placeholder='Title'
           value={title}
           onChange={(e) => {
             setTitle(e.target.value);
           }}
         ></input>
+        {titleError && <div className='text-danger'>타이틀을 입력하세요.</div>}
       </div>
       <div className='mb-3'>
         <label className='form-label'>Content</label>
         <textarea
-          className='form-control'
+          className={`form-control ${contentError ? 'border-danger' : ''}`}
           placeholder='Content'
           value={content}
           rows='10'
@@ -90,6 +108,7 @@ const BlogForm = ({ editing }) => {
             setContent(e.target.value);
           }}
         />
+        {contentError && <div className='text-danger'>내용을 입력하세요.</div>}
       </div>
       <div className='form-check mb-3'>
         <input

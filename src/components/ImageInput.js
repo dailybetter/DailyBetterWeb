@@ -23,7 +23,10 @@ function ImageInput() {
   };
   return (
     <>
-      <button onClick={onClick}> Image</button>
+      <button className='btn btn-success ms-2' onClick={onClick}>
+        {' '}
+        Image
+      </button>
       <input
         type='file'
         ref={ImageInputRef}

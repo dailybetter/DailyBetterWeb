@@ -3,7 +3,6 @@ import ImageInput from '../components/ImageInput';
 const CreatePage = () => {
   return (
     <>
-      <h1>CreatePage</h1>
       <BlogForm />
       <ImageInput />
     </>
