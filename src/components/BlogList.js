@@ -5,6 +5,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import Pagination from './Pagination';
 import propTypes from 'prop-types';
+import Toast from './Toast';
 const BlogList = ({ isAdmin }) => {
   const history = useHistory();
   const location = useLocation();
@@ -16,7 +17,7 @@ const BlogList = ({ isAdmin }) => {
   const [numberOfPosts, setNumberOfPosts] = useState(0);
   const [numberOfPages, setNumberOfPages] = useState(0);
   const [searchText, setSearchText] = useState('');
-  const limit = 2;
+  const limit = 5;
   const onClickPageButton = (page) => {
     history.push(`${location.pathname}?page=${page}`);
     setCurrentPage(page);
@@ -108,6 +109,12 @@ const BlogList = ({ isAdmin }) => {
   };
   return (
     <>
+      <Toast
+        toasts={[
+          { text: 'error', type: 'danger' },
+          { text: 'success', type: 'success' },
+        ]}
+      />
       <div className='input-group'>
         <input
           className='form-control'
