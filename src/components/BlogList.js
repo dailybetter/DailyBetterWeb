@@ -101,16 +101,28 @@ const BlogList = ({ isAdmin }) => {
       getPosts(1);
     }
   };
+  const onSearchBtn = () => {
+    history.push(`${location.pathname}?page=1`);
+    setCurrentPage(1);
+    getPosts(1);
+  };
   return (
     <>
-      <input
-        className='form-control'
-        type='text'
-        placeholder='Search..'
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
-        onKeyUp={onSearch}
-      />
+      <div className='input-group'>
+        <input
+          className='form-control'
+          type='text'
+          placeholder='Search..'
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          onKeyUp={onSearch}
+        ></input>
+        <div className='input-group-append'>
+          <button className='btn btn-outline-secondary' onClick={onSearchBtn}>
+            Search
+          </button>
+        </div>
+      </div>
       <hr />
       {posts.length === 0 ? (
         <div>'No posts found'</div>
