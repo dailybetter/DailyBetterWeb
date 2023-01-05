@@ -28,12 +28,6 @@
       "id": 5
     },
     {
-      "title": "redus",
-      "content": "reusd",
-      "publish": false,
-      "id": 6
-    },
-    {
       "title": "퍼블리시",
       "content": "이거는 퍼블리시야",
       "createdAt": 1672131471198,
@@ -55,53 +49,25 @@
       "id": 9
     },
     {
-      "title": "test",
-      "content": "testt",
-      "createdAt": 1672566524589,
-      "publish": false,
+      "title": "쌰시",
+      "content": "쎄쑤",
+      "createdAt": 1672841741850,
+      "publish": true,
       "id": 10
     },
     {
-      "title": "t",
-      "content": "t",
-      "createdAt": 1672566528205,
-      "publish": false,
+      "title": "ㅇㅇ",
+      "content": "ㅇ",
+      "createdAt": 1672843122035,
+      "publish": true,
       "id": 11
     },
     {
-      "title": "e",
-      "content": "e",
-      "createdAt": 1672566531029,
-      "publish": false,
+      "title": "ㄹㅇㄹㄹㅇㄹㅇ",
+      "content": "ㄹㅇㄹㅇ",
+      "createdAt": 1672843272331,
+      "publish": true,
       "id": 12
-    },
-    {
-      "title": "s",
-      "content": "s",
-      "createdAt": 1672566533988,
-      "publish": false,
-      "id": 13
-    },
-    {
-      "title": "t",
-      "content": "t",
-      "createdAt": 1672566537868,
-      "publish": false,
-      "id": 14
-    },
-    {
-      "title": "test",
-      "content": "testContent",
-      "createdAt": 1672667977784,
-      "publish": true,
-      "id": 15
-    },
-    {
-      "title": "validate",
-      "content": "validate test",
-      "createdAt": 1672762947861,
-      "publish": true,
-      "id": 16
     }
   ]
 }
