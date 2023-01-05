@@ -1,9 +1,9 @@
 import BlogForm from '../components/BlogForm';
 import ImageInput from '../components/ImageInput';
-const CreatePage = () => {
+const CreatePage = ({ addToast }) => {
   return (
     <>
-      <BlogForm />
+      <BlogForm addToast={addToast} />
       <ImageInput />
     </>
   );

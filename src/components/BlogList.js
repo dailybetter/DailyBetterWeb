@@ -21,6 +21,7 @@ const BlogList = ({ isAdmin }) => {
   const [numberOfPages, setNumberOfPages] = useState(0);
   const [searchText, setSearchText] = useState('');
   const limit = 5;
+
   const onClickPageButton = (page) => {
     history.push(`${location.pathname}?page=${page}`);
     setCurrentPage(page);

@@ -47,6 +47,62 @@
       "createdAt": 1672131514182,
       "publish": false,
       "id": 9
+    },
+    {
+      "title": "a",
+      "content": "a",
+      "createdAt": 1672928048767,
+      "publish": true,
+      "id": 10
+    },
+    {
+      "title": "s",
+      "content": "s",
+      "createdAt": 1672928069965,
+      "publish": false,
+      "id": 11
+    },
+    {
+      "title": "s",
+      "content": "s",
+      "createdAt": 1672928072133,
+      "publish": true,
+      "id": 12
+    },
+    {
+      "title": "Toast를 최상위 컴포넌트로 이동",
+      "content": "그러면 Toasts가 사라지지 않는다.",
+      "createdAt": 1672928320264,
+      "publish": true,
+      "id": 13
+    },
+    {
+      "title": "ㅇ",
+      "content": "ㅇ",
+      "createdAt": 1672928699303,
+      "publish": true,
+      "id": 14
+    },
+    {
+      "title": "dd",
+      "content": "dd",
+      "createdAt": 1672928914757,
+      "publish": true,
+      "id": 17
+    },
+    {
+      "title": "dsd",
+      "content": "dsds",
+      "createdAt": 1672929017149,
+      "publish": true,
+      "id": 18
+    },
+    {
+      "title": "redux를 쓰지 않고 prop로 addToast를 넘기기",
+      "content": "성공!",
+      "createdAt": 1672929082697,
+      "publish": true,
+      "id": 19
     }
   ]
 }
