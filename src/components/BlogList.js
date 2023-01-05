@@ -5,11 +5,10 @@ import { useHistory, useLocation } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import Pagination from './Pagination';
 import propTypes from 'prop-types';
-import Toast from './Toast';
 import useToast from '../hooks/toast';
 
 const BlogList = ({ isAdmin }) => {
-  const [toasts, addToast, deleteToast] = useToast();
+  const { addToast } = useToast();
   const history = useHistory();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
@@ -117,7 +116,6 @@ const BlogList = ({ isAdmin }) => {
   };
   return (
     <>
-      <Toast toasts={toasts} deleteToast={deleteToast} />
       <div className='input-group'>
         <input
           className='form-control'
