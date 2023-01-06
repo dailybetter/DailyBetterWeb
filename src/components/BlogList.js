@@ -19,6 +19,7 @@ const BlogList = ({ isAdmin }) => {
   const [numberOfPosts, setNumberOfPosts] = useState(0);
   const [numberOfPages, setNumberOfPages] = useState(0);
   const [searchText, setSearchText] = useState('');
+  const [error, setError] = useState('');
   const limit = 5;
 
   const onClickPageButton = (page) => {
@@ -52,7 +53,14 @@ const BlogList = ({ isAdmin }) => {
           setNumberOfPosts(res.headers['x-total-count']);
           setPosts(res.data);
           setLoading(false);
-        });
+        }).catch(e => {
+          setLoading(false)
+          setError('Something went wrong in DB')
+          addToast({
+            text:'DB연결상태를 확인하세요',
+            type:'danger'
+          })
+        })
     },
     [isAdmin, searchText]
   );
@@ -66,11 +74,17 @@ const BlogList = ({ isAdmin }) => {
     e.stopPropagation();
     axios.delete(`http://localhost:3003/posts/${id}`).then((res) => {
       setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
-    });
-    addToast({
-      text: '포스트가 삭제되었습니다.',
-      type: 'success',
-    });
+      addToast({
+        text: '포스트가 삭제되었습니다.',
+        type: 'success',
+      });
+    
+    }).catch(e => {
+      addToast({
+        text:'DB연결 상태를 확인하세요.',
+        type:'danger'
+      })
+    })
   };
 
   if (loading) {
@@ -114,6 +128,9 @@ const BlogList = ({ isAdmin }) => {
     setCurrentPage(1);
     getPosts(1);
   };
+  if (error) {
+    return <div>{error}</div>
+  }
   return (
     <>
       <div className='input-group'>

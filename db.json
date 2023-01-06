@@ -56,13 +56,6 @@
       "id": 13
     },
     {
-      "title": "dd",
-      "content": "dd",
-      "createdAt": 1672928914757,
-      "publish": true,
-      "id": 17
-    },
-    {
       "title": "redux를 쓰지 않고 prop로 addToast를 넘기기",
       "content": "성공!",
       "createdAt": 1672929082697,
@@ -89,6 +82,13 @@
       "createdAt": 1672970110584,
       "publish": true,
       "id": 22
+    },
+    {
+      "title": "dsdsd",
+      "content": "sdsdsds",
+      "createdAt": 1672992565832,
+      "publish": true,
+      "id": 23
     }
   ]
 }

@@ -15,6 +15,7 @@ const BlogForm = ({ editing }) => {
   const [titleError, setTitleError] = useState(false);
   const [contentError, setContentError] = useState(false);
   const history = useHistory();
+
   useEffect(() => {
     if (editing) {
       axios.get(`http://localhost:3003/posts/${id}`).then((res) => {
@@ -67,7 +68,12 @@ const BlogForm = ({ editing }) => {
             })
             .then((res) => {
               history.push(`/blogs/${id}`);
-            });
+            }).catch(e=>{
+              addToast({
+                text:'db연결을 확인하세요',
+                type:'danger'
+              })
+            })
         } else {
           axios
             .post('http://localhost:3003/posts', {
@@ -82,7 +88,12 @@ const BlogForm = ({ editing }) => {
                 text: '포스트작성 성공!',
               });
               history.push('/admin');
-            });
+            }).catch(e=>{
+              addToast({
+                text:'db연결을 확인하세요',
+                type:'danger'
+              })
+            })
         }
       }
     }
