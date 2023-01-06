@@ -74,6 +74,7 @@ const BlogList = ({ isAdmin }) => {
     e.stopPropagation();
     axios.delete(`http://localhost:3003/posts/${id}`).then((res) => {
       setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
+      getPosts(1);
       addToast({
         text: '포스트가 삭제되었습니다.',
         type: 'success',
