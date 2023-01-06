@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import useToast from '../hooks/toast';
 import propTypes from 'prop-types';
-const BlogForm = ({ editing, addToast }) => {
+const BlogForm = ({ editing }) => {
+  const { addToast } = useToast();
   const { id } = useParams();
   const [prevTitle, setPrevTitle] = useState('');
   const [title, setTitle] = useState('');

@@ -63,18 +63,32 @@
       "id": 17
     },
     {
-      "title": "dsd",
-      "content": "dsds",
-      "createdAt": 1672929017149,
-      "publish": true,
-      "id": 18
-    },
-    {
       "title": "redux를 쓰지 않고 prop로 addToast를 넘기기",
       "content": "성공!",
       "createdAt": 1672929082697,
       "publish": true,
       "id": 19
+    },
+    {
+      "title": "redux 를 사용해서 prop 넘기기",
+      "content": "redux",
+      "createdAt": 1672966486204,
+      "publish": true,
+      "id": 20
+    },
+    {
+      "title": "useToast custom hook",
+      "content": "d",
+      "createdAt": 1672967290837,
+      "publish": true,
+      "id": 21
+    },
+    {
+      "title": "기능이상없음",
+      "content": "ㅇ",
+      "createdAt": 1672970110584,
+      "publish": true,
+      "id": 22
     }
   ]
 }
