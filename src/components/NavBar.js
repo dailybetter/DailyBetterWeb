@@ -49,7 +49,10 @@ const Navbar = () => {
             <li className='navbar-item me-2'>
               <button
                 className='text-white btn btn-link text-decoration-none'
-                onClick={() => dispatch(openSignUp())}
+                onClick={() => {
+                  dispatch(openSignUp());
+                  console.log('signUp됨');
+                }}
               >
                 SignUp
               </button>

@@ -1,9 +1,13 @@
 import SignUp from '../components/SignUp';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 const MainPage = () => {
-  const isModalOpend = useSelector((state) => state.signUp.isModalOpend);
-  return <>{isModalOpend ? <SignUp /> : <h1>MainPage</h1>}</>;
+  // const isModalOpend = useSelector((state) => state.signUp.isModalOpend);
+  return (
+    <>
+      <SignUp />
+    </>
+  );
 };
 
 export default MainPage;

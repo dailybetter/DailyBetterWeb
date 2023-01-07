@@ -6,7 +6,7 @@ import Toast from './components/Toast';
 import useToast from './hooks/toast';
 import { useDispatch, useSelector } from 'react-redux';
 import ProtectedRoute from './ProtectedRoute';
-import {login} from './store/authSlice'
+import { login } from './store/authSlice';
 import Spinner from './components/Spinner';
 
 function App() {
@@ -15,14 +15,14 @@ function App() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    if(localStorage.getItem('isLoggedIn')){
+    if (localStorage.getItem('isLoggedIn')) {
       dispatch(login());
     }
     setLoading(false);
-  }, [])
+  }, []);
 
   if (loading) {
-    return <Spinner />
+    return <Spinner />;
   }
   return (
     <Router>
@@ -32,12 +32,14 @@ function App() {
         <Switch>
           {routes.map((route) => {
             if (route.auth) {
-              return <ProtectedRoute
-                path={route.path}
-                key={route.path}
-                component={route.component}
-                exact
-              />
+              return (
+                <ProtectedRoute
+                  path={route.path}
+                  key={route.path}
+                  component={route.component}
+                  exact
+                />
+              );
             }
             return (
               <Route
