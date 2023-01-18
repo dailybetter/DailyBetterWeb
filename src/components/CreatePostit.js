@@ -1,17 +1,23 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 
 const CreatePostit = () => {
-  const textRef = useRef();
+  const titleRef = useRef();
   let title = '제목 없음';
   const randomColor = Math.floor(Math.random() * 6 + 1);
   const color_list = ['blue', 'green', 'orange', 'purple', 'yellow', 'brown'];
   const onSubmit = (e) => {
     e.preventDefault();
-    title = textRef.value;
+    title = titleRef.current.value;
     console.log(title);
-    textRef.value = '';
+    titleRef.current.value = '';
     console.log(color_list[randomColor]);
   };
+  const Focus = () => {
+    titleRef.current.focus();
+  };
+  useEffect(() => {
+    Focus();
+  }, []);
   return (
     <>
       <form>
@@ -20,7 +26,15 @@ const CreatePostit = () => {
             className='form-control'
             id='form4Example3'
             rows='4'
-            ref={textRef}
+            ref={titleRef}
+          ></textarea>
+        </div>
+        <div className='form-outline mb-4'>
+          <textarea
+            className='form-control'
+            id='form4Example3'
+            rows='4'
+            ref={titleRef}
           ></textarea>
         </div>
         <button
