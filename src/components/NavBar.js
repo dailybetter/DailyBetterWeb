@@ -35,6 +35,16 @@ const Navbar = () => {
               Posts
             </NavLink>
           </li>
+          <li className='nav-item me-2'>
+            <NavLink
+              activeClassName='active'
+              className='navbar-brand'
+              aria-current='page'
+              to='/postits/'
+            >
+              포스트잇
+            </NavLink>
+          </li>
           <li className='navbar-item me-2'>
             <button
               className='text-white btn btn-link text-decoration-none'

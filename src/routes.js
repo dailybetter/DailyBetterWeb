@@ -4,7 +4,8 @@ import CreatePage from './pages/CreatePage';
 import EditPage from './pages/EditPage';
 import ShowPage from './pages/ShowPage';
 import AdminPage from './pages/AdminPage';
-import NotFoundPage from './pages/NotFoundPage'
+import NotFoundPage from './pages/NotFoundPage';
+import MindPostPage from './pages/MindPostPage';
 const routes = [
   {
     path: '/',
@@ -17,7 +18,7 @@ const routes = [
   {
     path: '/admin',
     component: AdminPage,
-    auth: true
+    auth: true,
   },
   {
     path: '/blogs/create',
@@ -26,16 +27,20 @@ const routes = [
   {
     path: '/blogs/:id/edit',
     component: EditPage,
-    auth: true
+    auth: true,
   },
   {
     path: '/blogs/:id',
     component: ShowPage,
   },
   {
+    path: '/postits/',
+    component: MindPostPage,
+  },
+  {
     path: '*',
-    component: NotFoundPage
-  }
+    component: NotFoundPage,
+  },
 ];
 
 export default routes;

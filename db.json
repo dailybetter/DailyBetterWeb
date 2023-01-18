@@ -90,5 +90,14 @@
       "publish": true,
       "id": 23
     }
+  ],
+  "postits": [
+    {
+      "title": "오늘은 처음으로 코테를 봤다",
+      "content": "너무 쉬웠다",
+      "color":"blue",
+      "id":24
+    }
+
   ]
 }
