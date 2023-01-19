@@ -1,7 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 const Postit = () => {
+  let isUpdate = useSelector((state) => state.postit.isUpdate);
   const [postits, setPostits] = useState([]);
   const getPostits = () => {
     axios.get(`http://localhost:3003/postits/`).then((res) => {
@@ -10,7 +12,7 @@ const Postit = () => {
   };
   useEffect(() => {
     getPostits();
-  }, []);
+  }, [isUpdate]);
   return (
     <>
       <div className='row'>

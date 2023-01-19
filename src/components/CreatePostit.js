@@ -1,7 +1,11 @@
 import axios from 'axios';
 import { useRef, useEffect } from 'react';
-
+import useToast from '../hooks/toast';
+import { useDispatch } from 'react-redux';
+import { postitUpdate } from '../store/postitSlice';
 const CreatePostit = () => {
+  const dispatch = useDispatch();
+  const { addToast } = useToast();
   const titleRef = useRef();
   let content = '내용 없음';
   const color_list = ['blue', 'green', 'orange', 'purple', 'yellow', 'brown'];
@@ -12,10 +16,18 @@ const CreatePostit = () => {
     console.log(content);
     titleRef.current.value = '';
     console.log(randomColor);
-    axios.post('http://localhost:3003/postits/', {
-      content,
-      color: randomColor,
-    });
+    axios
+      .post('http://localhost:3003/postits/', {
+        content,
+        color: randomColor,
+      })
+      .then(() => {
+        addToast({
+          type: 'success',
+          text: '포스트작성 성공!',
+        });
+        dispatch(postitUpdate());
+      });
   };
   const Focus = () => {
     titleRef.current.focus();
@@ -43,6 +55,7 @@ const CreatePostit = () => {
                   ref={titleRef}
                   border='none'
                   resize='none'
+                  placeholder='작성하세요'
                 ></textarea>
               </div>
               <div className='d-flex flex-row-reverse'>
