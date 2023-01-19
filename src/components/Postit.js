@@ -25,7 +25,7 @@ const Postit = () => {
                   data-radius='none'
                 >
                   <div className='content'>
-                    <h4 className='title'>{postit.title}</h4>
+                    {/* <h4 className='title fs-6'>{postit.title}</h4> */}
                     <p className='description'>{postit.content}</p>
                   </div>
                 </div>

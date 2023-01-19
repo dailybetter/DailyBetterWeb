@@ -93,11 +93,14 @@
   ],
   "postits": [
     {
-      "title": "오늘은 처음으로 코테를 봤다",
-      "content": "너무 쉬웠다",
-      "color":"blue",
-      "id":24
+      "content": "리액트",
+      "color": "blue",
+      "id": 24
+    },
+    {
+      "content": "test",
+      "color": "yellow",
+      "id": 25
     }
-
   ]
 }

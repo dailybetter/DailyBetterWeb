@@ -1,16 +1,21 @@
+import axios from 'axios';
 import { useRef, useEffect } from 'react';
 
 const CreatePostit = () => {
   const titleRef = useRef();
-  let title = '제목 없음';
-  const randomColor = Math.floor(Math.random() * 6 + 1);
+  let content = '내용 없음';
   const color_list = ['blue', 'green', 'orange', 'purple', 'yellow', 'brown'];
+  const randomColor = color_list[Math.floor(Math.random() * 5 + 1)];
   const onSubmit = (e) => {
     e.preventDefault();
-    title = titleRef.current.value;
-    console.log(title);
+    content = titleRef.current.value;
+    console.log(content);
     titleRef.current.value = '';
-    console.log(color_list[randomColor]);
+    console.log(randomColor);
+    axios.post('http://localhost:3003/postits/', {
+      content,
+      color: randomColor,
+    });
   };
   const Focus = () => {
     titleRef.current.focus();
@@ -20,31 +25,39 @@ const CreatePostit = () => {
   }, []);
   return (
     <>
-      <form>
-        <div className='form-outline mb-4'>
-          <textarea
-            className='form-control'
-            id='form4Example3'
-            rows='4'
-            ref={titleRef}
-          ></textarea>
+      <div className='col-md-4 col-sm-6 content-card'>
+        <div className='card-big-shadow'>
+          <div
+            className='card card-just-text'
+            data-background='color'
+            data-color={randomColor}
+            data-radius='none'
+          >
+            <form>
+              <div className='form-outline mb-4'>
+                <textarea
+                  className='form-control border-0 bg-transparent'
+                  id='form4Example3'
+                  type='text'
+                  rows='4'
+                  ref={titleRef}
+                  border='none'
+                  resize='none'
+                ></textarea>
+              </div>
+              <div className='d-flex flex-row-reverse'>
+                <button
+                  type='submit'
+                  className='btn btn-outline-dark'
+                  onClick={onSubmit}
+                >
+                  등록하기
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-        <div className='form-outline mb-4'>
-          <textarea
-            className='form-control'
-            id='form4Example3'
-            rows='4'
-            ref={titleRef}
-          ></textarea>
-        </div>
-        <button
-          type='submit'
-          className='btn btn-primary btn-block mb-4'
-          onClick={onSubmit}
-        >
-          등록하기
-        </button>
-      </form>
+      </div>
     </>
   );
 };
