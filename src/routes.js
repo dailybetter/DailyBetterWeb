@@ -6,6 +6,7 @@ import ShowPage from './pages/ShowPage';
 import AdminPage from './pages/AdminPage';
 import NotFoundPage from './pages/NotFoundPage';
 import MindPostPage from './pages/MindPostPage';
+import CalendarPage from './pages/CalendarPage';
 const routes = [
   {
     path: '/',
@@ -36,6 +37,10 @@ const routes = [
   {
     path: '/postits/',
     component: MindPostPage,
+  },
+  {
+    path: '/calendar/',
+    component: CalendarPage,
   },
   {
     path: '*',

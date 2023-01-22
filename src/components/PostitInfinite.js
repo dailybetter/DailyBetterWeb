@@ -3,7 +3,14 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 
-const Postit = () => {
+import { FixedSizeGrid as Grid } from 'react-window';
+import InfiniteLoader from 'react-window-infinite-loader';
+import AutoSizer from 'react-virtualized-auto-sizer';
+
+
+const GUTTER_SIZE = 10;
+
+const Postit = ({list, params}) => {
   let isUpdate = useSelector((state) => state.postit.isUpdate);
   const [postits, setPostits] = useState([]);
   const getPostits = () => {
