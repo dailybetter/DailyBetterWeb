@@ -1,10 +1,17 @@
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import { INITIAL_EVENTS, createEventId } from './event-utils';
-
+import { createEventId } from './event-utils';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 // import CalendarSidebar from './CalendarSidebar';
 const Calendar = () => {
+  const [events, setEvents] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost:3003/calendarEvents/').then((res) => {
+      setEvents(res);
+    });
+  }, []);
   const handleDateSelect = (e) => {
     console.log(e.view.calendar);
     let title = prompt('Please enter a new title for your event');
@@ -21,12 +28,6 @@ const Calendar = () => {
     }
   };
 
-  const handleEvents = (e) => {
-    e.setState({
-      currentEvents: e,
-    });
-  };
-
   return (
     <>
       {/* <CalendarSidebar /> */}
@@ -35,11 +36,16 @@ const Calendar = () => {
         initialView='dayGridMonth'
         editable={true}
         selectable={true}
-        initialEvents={INITIAL_EVENTS}
-        eventsSet={(e) => {
-          handleEvents(e);
+        initialEvents={events}
+        headerToolbar={{
+          start: 'today prev next',
+          end: 'dayGridMonth dayGridWeek dayGridDay',
         }}
-        dateClick={(e) => {
+        events={events}
+        // dateClick={(e) => {
+        //   handleDateSelect(e);
+        // }}
+        select={(e) => {
           handleDateSelect(e);
         }}
       />
