@@ -168,59 +168,11 @@
   "calendarEvents": [
     {
       "allDay": true,
-      "end": "2023-01-25",
-      "id": 37,
-      "start": "2023-01-24",
-      "title": "The Title"
-    },
-    {
-      "allDay": true,
-      "end": "2023-01-26",
-      "id": "2",
-      "start": "2023-01-25",
-      "title": "test"
-    },
-    {
-      "allDay": true,
-      "end": "2023-01-28",
-      "id": "3",
-      "start": "2023-01-27",
-      "title": "tete"
-    },
-    {
-      "allDay": true,
-      "end": "2023-01-19",
-      "id": "4",
-      "start": "2023-01-18",
-      "title": "test"
-    },
-    {
-      "allDay": true,
-      "end": "2023-01-27",
-      "id": "09293206-9e9e-4c96-b272-2996f1eeff20",
-      "start": "2023-01-26",
-      "title": "test123"
-    },
-    {
-      "allDay": true,
-      "end": "2023-01-20",
-      "id": "5738994d-b042-4f96-b639-c815f6916737",
-      "start": "2023-01-19",
-      "title": "test123"
-    },
-    {
-      "allDay": true,
-      "end": "2023-01-13",
-      "id": "632f878a-dfc2-46e1-93b9-7cad998a1332",
-      "start": "2023-01-12",
-      "title": "test123"
-    },
-    {
-      "allDay": true,
-      "end": "2023-01-29",
-      "id": "3332cdb0-6bb6-4265-890a-121440260c20",
-      "start": "2023-01-28",
-      "title": "tt"
+      "end": "2023-01-25T15:00:00.000Z",
+      "id": "984563eb-6213-42b3-a90f-ff4c5346e606",
+      "start": "2023-01-23T15:00:00.000Z",
+      "title": "오후 미팅",
+      "resourceEditable": true
     }
   ]
 }

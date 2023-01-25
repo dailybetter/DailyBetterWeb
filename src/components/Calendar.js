@@ -27,6 +27,7 @@ const Calendar = () => {
         id: uuid(),
         start: e.startStr,
         title,
+        resourceEditable: true
       });
       calendarApi.addEvent({
         allDay: e.allDay,
@@ -34,20 +35,32 @@ const Calendar = () => {
         id: uuid(),
         start: e.startStr,
         title,
+        resourceEditable: true
       });
       toggle = !toggle;
     }
   };
+  // setInterval(() => console.log(events),2000)
+  //삭제 함수
   const handleEventClick = (e) => {
     console.log(e);
     const eventTitle = e.el.fcSeg.eventRange.def.title;
-    const ID = e.el.fcSeg.eventRange.def.publicId;
+    const deleteId = e.el.fcSeg.eventRange.def.publicId;
     // eslint-disable-next-line no-restricted-globals
     if (confirm(`${eventTitle}를 삭제하시겠습니까?`)) {
       e.event.remove();
-      axios.delete(`http://localhost:3003/calendarEvents/${ID}`);
+      axios.delete(`http://localhost:3003/calendarEvents/${deleteId}`);
     }
   };
+  //드롭 
+  const eventDrop = (info) =>{
+    // alert(info.event.start.toISOString())
+    console.log(info.event)
+    const updateId = info.event._def.publicId
+    axios.get(`http://localhost:3003/calendarEvents/${updateId}`).then((res) =>{
+      axios.put(`http://localhost:3003/calendarEvents/${updateId}`,{...res.data,start:info.event.start.toISOString(), end:info.event.end.toISOString() })
+    })
+  }
 
   return (
     <>
@@ -57,6 +70,7 @@ const Calendar = () => {
         initialView='dayGridMonth'
         editable
         selectable
+        droppable
         // initialEvents={events}
         headerToolbar={{
           start: 'today prev next',
@@ -66,6 +80,7 @@ const Calendar = () => {
         eventClick={(e) => {
           handleEventClick(e);
         }}
+        eventDrop = {eventDrop}
         select={(e) => {
           handleDateSelect(e);
         }}
