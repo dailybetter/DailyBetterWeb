@@ -5,6 +5,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { v4 as uuid } from 'uuid';
+import { EventModal,eventModalOpen } from './EventModal';
 // import CalendarSidebar from './CalendarSidebar';
 const Calendar = () => {
   let toggle = true;
@@ -40,7 +41,6 @@ const Calendar = () => {
       toggle = !toggle;
     }
   };
-  // setInterval(() => console.log(events),2000)
   //삭제 함수
   const handleEventClick = (e) => {
     console.log(e);
@@ -64,14 +64,13 @@ const Calendar = () => {
 
   return (
     <>
-      {/* <CalendarSidebar /> */}
+      <EventModal />
       <FullCalendar
         plugins={[dayGridPlugin, interactionPlugin]}
         initialView='dayGridMonth'
         editable
         selectable
         droppable
-        // initialEvents={events}
         headerToolbar={{
           start: 'today prev next',
           end: 'dayGridMonth dayGridWeek dayGridDay',
@@ -83,6 +82,7 @@ const Calendar = () => {
         eventDrop = {eventDrop}
         select={(e) => {
           handleDateSelect(e);
+          eventModalOpen()
         }}
       />
     </>

@@ -168,10 +168,18 @@
   "calendarEvents": [
     {
       "allDay": true,
-      "end": "2023-01-25T15:00:00.000Z",
+      "end": "2023-01-24T15:00:00.000Z",
       "id": "984563eb-6213-42b3-a90f-ff4c5346e606",
-      "start": "2023-01-23T15:00:00.000Z",
+      "start": "2023-01-22T15:00:00.000Z",
       "title": "오후 미팅",
+      "resourceEditable": true
+    },
+    {
+      "allDay": true,
+      "end": "2023-01-25T15:00:00.000Z",
+      "id": "2d4545fa-9e29-44a5-847c-281bcc959fd5",
+      "start": "2023-01-24T15:00:00.000Z",
+      "title": "김싸피",
       "resourceEditable": true
     }
   ]
