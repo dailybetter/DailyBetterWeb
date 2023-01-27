@@ -89,13 +89,6 @@
       "createdAt": 1672992565832,
       "publish": true,
       "id": 23
-    },
-    {
-      "title": "titi",
-      "content": "toto",
-      "createdAt": 1674136596365,
-      "publish": true,
-      "id": 24
     }
   ],
   "postits": [
@@ -180,6 +173,22 @@
       "id": "2d4545fa-9e29-44a5-847c-281bcc959fd5",
       "start": "2023-01-24T15:00:00.000Z",
       "title": "김싸피",
+      "resourceEditable": true
+    },
+    {
+      "allDay": true,
+      "end": "2023-01-19T15:00:00.000Z",
+      "id": "4bd46dcc-02c0-4d42-942b-3a068c7acb4f",
+      "start": "2023-01-18T15:00:00.000Z",
+      "title": "생성",
+      "resourceEditable": true
+    },
+    {
+      "allDay": true,
+      "end": "2023-01-27",
+      "id": "c8a8114d-93fd-4826-8f54-00f48d0c63c3",
+      "start": "2023-01-26",
+      "title": "test",
       "resourceEditable": true
     }
   ]

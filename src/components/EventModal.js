@@ -46,8 +46,5 @@ export const EventModal = ({id, title, memo, eventDelete}) =>{
     </>
     ) 
   }
-export const eventModalOpen = ()=>{
-    EventModal.setOpen(true)
-  }
 
 // export default EventModal
